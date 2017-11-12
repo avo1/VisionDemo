@@ -23,6 +23,7 @@ class CameraViewController: UIViewController {
     var previewLayer: AVCaptureVideoPreviewLayer!
     
     var photoData: Data?
+    var flashMode: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,14 +72,32 @@ class CameraViewController: UIViewController {
     
     @objc func đidTapCameraView() {
         let settings = AVCapturePhotoSettings()
-        let previewPixelType = settings.availablePreviewPhotoPixelFormatTypes.first!
-        let previewFormat = [kCVPixelBufferPixelFormatTypeKey as String: previewPixelType,
-                             kCVPixelBufferWidthKey as String: 160, kCVPixelBufferHeightKey as String: 160]
+//        let previewPixelType = settings.availablePreviewPhotoPixelFormatTypes.first!
+//        let previewFormat = [kCVPixelBufferPixelFormatTypeKey as String: previewPixelType,
+//                             kCVPixelBufferWidthKey as String: 160, kCVPixelBufferHeightKey as String: 160]
         
-        settings.previewPhotoFormat = previewFormat
+        settings.previewPhotoFormat = settings.embeddedThumbnailPhotoFormat
+        
+        if flashMode {
+            settings.flashMode = .on
+        } else {
+            settings.flashMode = .off
+        }
+        
         cameraOutput.capturePhoto(with: settings, delegate: self)
     }
 
+    @IBAction func toggleFlashMode(_ sender: RoundedShadowButton) {
+        flashMode = !flashMode
+        if flashMode {
+            flashButton.backgroundColor = UIColor.white
+            flashButton.setTitle("FLASH ON", for: UIControlState.normal)
+        } else {
+            flashButton.backgroundColor = UIColor.black
+            flashButton.setTitle("FLASH OFF", for: UIControlState.normal)
+        }
+    }
+    
 }
 
 extension CameraViewController: AVCapturePhotoCaptureDelegate {

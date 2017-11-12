@@ -61,7 +61,7 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jdU-XN-GSy" customClass="RoundedShadowButton" customModule="VisionDemo" customModuleProvider="target">
                                 <rect key="frame" x="20" y="615" width="90" height="32"/>
-                                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="90" id="0P9-vI-3do"/>
                                     <constraint firstAttribute="height" constant="32" id="VQi-Jm-kQ7"/>
@@ -70,6 +70,9 @@
                                 <state key="normal" title="FLASH OFF">
                                     <color key="titleColor" red="1" green="0.53980984221822026" blue="0.52361191909929039" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
+                                <connections>
+                                    <action selector="toggleFlashMode:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nkf-Nc-sU4"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -92,7 +95,7 @@
                         <outlet property="cameraView" destination="zYr-OH-NNj" id="EjY-ky-Hjw"/>
                         <outlet property="capturedImageView" destination="kEQ-VP-qcT" id="rbl-8u-nC4"/>
                         <outlet property="confidenceLabel" destination="UM4-no-w91" id="DuK-sg-sOc"/>
-                        <outlet property="flashButton" destination="jdU-XN-GSy" id="5Jg-gt-zcv"/>
+                        <outlet property="flashButton" destination="jdU-XN-GSy" id="D8e-to-t92"/>
                         <outlet property="itemLabel" destination="PFE-uQ-7nq" id="Q4S-lV-so7"/>
                         <outlet property="roundedLabelView" destination="9ed-Yx-NVV" id="sPg-zh-weV"/>
                     </connections>
