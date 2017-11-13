@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		553AB1AE1FB9E4C100DA6E19 /* SqueezeNet.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 553AB1AD1FB9E4C100DA6E19 /* SqueezeNet.mlmodel */; };
 		557E08BF1FB804CF009EA088 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557E08BE1FB804CF009EA088 /* AppDelegate.swift */; };
 		557E08C41FB804CF009EA088 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 557E08C21FB804CF009EA088 /* Main.storyboard */; };
 		557E08C61FB804CF009EA088 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 557E08C51FB804CF009EA088 /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		553AB1AD1FB9E4C100DA6E19 /* SqueezeNet.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = SqueezeNet.mlmodel; sourceTree = "<group>"; };
 		557E08BB1FB804CF009EA088 /* VisionDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VisionDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		557E08BE1FB804CF009EA088 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		557E08C31FB804CF009EA088 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 		557E08D21FB80508009EA088 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				553AB1AD1FB9E4C100DA6E19 /* SqueezeNet.mlmodel */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -170,6 +173,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				557E08D41FB8052F009EA088 /* CameraViewController.swift in Sources */,
+				553AB1AE1FB9E4C100DA6E19 /* SqueezeNet.mlmodel in Sources */,
 				557E08BF1FB804CF009EA088 /* AppDelegate.swift in Sources */,
 				557E08D61FB80845009EA088 /* RoundedShadowView.swift in Sources */,
 				557E08D81FB8093F009EA088 /* RoundedShadowButton.swift in Sources */,

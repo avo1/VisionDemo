@@ -8,6 +8,8 @@
 
 import UIKit
 import AVFoundation
+import CoreML
+import Vision
 
 class CameraViewController: UIViewController {
 
@@ -98,6 +100,25 @@ class CameraViewController: UIViewController {
         }
     }
     
+    func resultsMethod(request: VNRequest, error: Error?) {
+        guard let results = request.results as? [VNClassificationObservation] else { return }
+        
+        for cls in results {
+            //print(cls.identifier, cls.confidence)
+            
+            // the result is sorted by the confidence, desc
+            // so just take the 1st result
+            if cls.confidence < 0.5 {
+                itemLabel.text = "I'm not sure. Pls try again!"
+                confidenceLabel.text = ""
+                break
+            } else {
+                itemLabel.text = cls.identifier
+                confidenceLabel.text = "CONFIDENCE: \(Int(cls.confidence * 100)) %"
+                break
+            }
+        }
+    }
 }
 
 extension CameraViewController: AVCapturePhotoCaptureDelegate {
@@ -106,6 +127,16 @@ extension CameraViewController: AVCapturePhotoCaptureDelegate {
             debugPrint(error)
         } else {
             photoData = photo.fileDataRepresentation()
+            
+            do {
+                let model = try VNCoreMLModel(for: SqueezeNet().model)
+                let request = VNCoreMLRequest(model: model, completionHandler: resultsMethod)
+                let handler = VNImageRequestHandler(data: photoData!)
+                
+                try handler.perform([request])
+            } catch {
+                debugPrint(error)
+            }
             
             let image = UIImage(data: photoData!)
             capturedImageView.image = image
