@@ -24,7 +24,7 @@ class CameraViewController: UIViewController {
     var captureSession: AVCaptureSession!
     var cameraOutput: AVCapturePhotoOutput!
     var previewLayer: AVCaptureVideoPreviewLayer!
-    var speechSynthesizer: AVSpeechSynthesizer!
+    var speechSynthesizer = AVSpeechSynthesizer()
     
     var photoData: Data?
     var flashMode: Bool = false
@@ -33,7 +33,10 @@ class CameraViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        super.viewDidLoad()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         previewLayer.frame = cameraView.bounds
         speechSynthesizer.delegate = self
     }
@@ -122,7 +125,7 @@ class CameraViewController: UIViewController {
                 synthersizeSpeech(text: msg)
                 break
             } else {
-                let msg = "This looks like a \(cls.identifier). I'm \(Int(cls.confidence * 100)) sure"
+                let msg = "This looks like a \(cls.identifier). I'm \(Int(cls.confidence * 100))% sure"
                 itemLabel.text = cls.identifier
                 confidenceLabel.text = "CONFIDENCE: \(Int(cls.confidence * 100)) %"
                 
