@@ -19,10 +19,12 @@ class CameraViewController: UIViewController {
     @IBOutlet weak var cameraView: UIView!
     @IBOutlet weak var roundedLabelView: RoundedShadowView!
     @IBOutlet weak var flashButton: RoundedShadowButton!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     var captureSession: AVCaptureSession!
     var cameraOutput: AVCapturePhotoOutput!
     var previewLayer: AVCaptureVideoPreviewLayer!
+    var speechSynthesizer: AVSpeechSynthesizer!
     
     var photoData: Data?
     var flashMode: Bool = false
@@ -31,15 +33,15 @@ class CameraViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        super.viewDidLoad()
         previewLayer.frame = cameraView.bounds
+        speechSynthesizer.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        spinner.isHidden = true
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(đidTapCameraView))
         tap.numberOfTapsRequired = 1
@@ -73,6 +75,10 @@ class CameraViewController: UIViewController {
     }
     
     @objc func đidTapCameraView() {
+        cameraView.isUserInteractionEnabled = false
+        spinner.isHidden = false
+        spinner.startAnimating()
+        
         let settings = AVCapturePhotoSettings()
 //        let previewPixelType = settings.availablePreviewPhotoPixelFormatTypes.first!
 //        let previewFormat = [kCVPixelBufferPixelFormatTypeKey as String: previewPixelType,
@@ -109,15 +115,26 @@ class CameraViewController: UIViewController {
             // the result is sorted by the confidence, desc
             // so just take the 1st result
             if cls.confidence < 0.5 {
-                itemLabel.text = "I'm not sure. Pls try again!"
+                let msg = "I'm not sure. Please try again!"
+                itemLabel.text = msg
                 confidenceLabel.text = ""
+                
+                synthersizeSpeech(text: msg)
                 break
             } else {
+                let msg = "This looks like a \(cls.identifier). I'm \(Int(cls.confidence * 100)) sure"
                 itemLabel.text = cls.identifier
                 confidenceLabel.text = "CONFIDENCE: \(Int(cls.confidence * 100)) %"
+                
+                synthersizeSpeech(text: msg)
                 break
             }
         }
+    }
+    
+    func synthersizeSpeech(text: String) {
+        let speechUtterance = AVSpeechUtterance(string: text)
+        speechSynthesizer.speak(speechUtterance)
     }
 }
 
@@ -142,5 +159,13 @@ extension CameraViewController: AVCapturePhotoCaptureDelegate {
             capturedImageView.image = image
         }
         
+    }
+}
+
+extension CameraViewController: AVSpeechSynthesizerDelegate {
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
+        spinner.stopAnimating()
+        cameraView.isUserInteractionEnabled = true
+        spinner.isHidden = true
     }
 }

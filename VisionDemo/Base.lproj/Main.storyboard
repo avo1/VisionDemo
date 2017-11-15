@@ -30,8 +30,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9ed-Yx-NVV" customClass="RoundedShadowView" customModule="VisionDemo" customModuleProvider="target">
                                 <rect key="frame" x="20" y="50" width="335" height="60"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="PFE-uQ-7nq">
-                                        <rect key="frame" x="148.5" y="8" width="38" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PFE-uQ-7nq">
+                                        <rect key="frame" x="8" y="8" width="319" height="21"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                         <color key="textColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -47,8 +47,10 @@
                                 <constraints>
                                     <constraint firstItem="UM4-no-w91" firstAttribute="centerX" secondItem="9ed-Yx-NVV" secondAttribute="centerX" id="492-3G-Hvj"/>
                                     <constraint firstItem="UM4-no-w91" firstAttribute="top" secondItem="PFE-uQ-7nq" secondAttribute="bottom" constant="5" id="DOt-hB-eXB"/>
+                                    <constraint firstAttribute="trailing" secondItem="PFE-uQ-7nq" secondAttribute="trailing" constant="8" id="KEn-uH-JDG"/>
                                     <constraint firstItem="PFE-uQ-7nq" firstAttribute="centerX" secondItem="9ed-Yx-NVV" secondAttribute="centerX" id="T86-P3-9M2"/>
                                     <constraint firstItem="PFE-uQ-7nq" firstAttribute="top" secondItem="9ed-Yx-NVV" secondAttribute="top" constant="8" id="V2g-al-lZr"/>
+                                    <constraint firstItem="PFE-uQ-7nq" firstAttribute="leading" secondItem="9ed-Yx-NVV" secondAttribute="leading" constant="8" id="XHD-Z5-1Rk"/>
                                     <constraint firstAttribute="height" constant="60" id="rI7-ub-Ze7"/>
                                 </constraints>
                             </view>
@@ -74,12 +76,17 @@
                                     <action selector="toggleFlashMode:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nkf-Nc-sU4"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="JhJ-NA-2if">
+                                <rect key="frame" x="305" y="573" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="zYr-OH-NNj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="K74-Ej-ml6"/>
                             <constraint firstItem="zYr-OH-NNj" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="QGx-F7-IlZ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="zYr-OH-NNj" secondAttribute="bottom" id="RdW-re-Trl"/>
+                            <constraint firstItem="JhJ-NA-2if" firstAttribute="centerY" secondItem="kEQ-VP-qcT" secondAttribute="centerY" id="TbS-Gd-30W"/>
+                            <constraint firstItem="JhJ-NA-2if" firstAttribute="centerX" secondItem="kEQ-VP-qcT" secondAttribute="centerX" id="Tcy-1t-RfN"/>
                             <constraint firstItem="jdU-XN-GSy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="g3D-rp-l8b"/>
                             <constraint firstItem="9ed-Yx-NVV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="gZS-aK-CCy"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="kEQ-VP-qcT" secondAttribute="bottom" constant="20" id="lMP-yq-4U5"/>
@@ -98,6 +105,7 @@
                         <outlet property="flashButton" destination="jdU-XN-GSy" id="D8e-to-t92"/>
                         <outlet property="itemLabel" destination="PFE-uQ-7nq" id="Q4S-lV-so7"/>
                         <outlet property="roundedLabelView" destination="9ed-Yx-NVV" id="sPg-zh-weV"/>
+                        <outlet property="spinner" destination="JhJ-NA-2if" id="LVs-Zm-EAP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
